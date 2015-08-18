@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>slide</title>
+    <script src="./js/jquery-2.1.1.min.js"></script>
+    <script defer='defer' src="./js/index.js"></script>
+</head>
+<style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    #container {
+        position: relative;
+        width: 640px;
+        height: 400px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    .slides {
+        position: relative;
+        width: 640px;
+        height: 360px;
+        overflow: hidden;
+    }
+    .slides img {
+        width: 640px;
+        height: 360px;
+        display: block;
+        float: left;
+    }
+    .items {
+        height: 30px;
+        position: relative;
+        top: -30px;
+        text-align: center;
+        list-style: none;
+        /*background-color: rgba(0,0,0,.25);*/
+    }
+    .items li {
+        width: 14px;
+        height: 14px;
+        position: relative;
+        top: 6px;
+        display: inline-block;
+        background-color: rgba(255,255,255,.35);
+        border-radius: 25px;
+        -webkit-border-radius:25px;
+        -moz-border-radius:25px;
+        cursor: pointer;
+    }
+    .items li.active {
+        background-color: #fff;
+    }
+</style>
+<body>
+    <div id="container">
+        <div class="slides">
+            <img src="./img/slide-1.png" alt="">
+            <img src="./img/slide-2.png" alt="">
+            <img src="./img/slide-3.png" alt="">
+            <img src="./img/slide-4.png" alt="">
+            <img src="./img/slide-5.png" alt="">
+        </div>
+        <ul class="items">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+</html>
