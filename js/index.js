@@ -9,7 +9,7 @@ $(function() {
         var current = 0;  // 当前幻灯片下标
         var next = 0;  // 下一幻灯片下标
         var container = $(selector);  // 幻灯片容器
-        var slides = container.find('img');  // 幻灯片
+        var slides = container.children();  // 幻灯片
         var items = $('.items');  // 按钮容器
         var num = slides.length;  // 幻灯片数量
         var width = container.width();  // 幻灯片容器宽度
@@ -53,11 +53,11 @@ $(function() {
                     'position' : 'absolute',
                     'left' : 0,
                     'top' : 0
-                }).eq(next).show().siblings().hide();
+                }).eq(next).fadeIn(speed).siblings().fadeOut();
             } else {
                 container.animate({left : '-' + next * width + 'px'}, speed);
             }
-            items.find('li').eq(next).addClass('active').siblings().removeClass('active');
+            items.children().eq(next).addClass('active').siblings().removeClass('active');
             current = next;
         };
 
@@ -65,11 +65,12 @@ $(function() {
         var goTo = function(index) {
             stop();
             run(index);
-
         };
 
         /*清除计时器*/
         var stop = function() {
+            container.stop(true);
+            container.children().stop(true);
             window.clearInterval(timer);
         };
 
@@ -94,17 +95,7 @@ $(function() {
         };
 
         init();
-        play();
-
-        return {
-            prev : function() {
-                prev();
-            },
-
-            next : function() {
-                next();
-            }
-        };
+        play(0);
 
     };
 
