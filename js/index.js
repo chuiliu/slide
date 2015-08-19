@@ -1,17 +1,10 @@
 $(function() {
 
-    var options = {
-        container : '.sliders',
-        delay: 3000,
-        speed: 1000,
-    };
-
     var Slider = function(selector, options) {
 
         if (!selector) return;
 
         var options = options || {};
-
 
         var current = 0;  // 当前幻灯片下标
         var next = 0;  // 下一幻灯片下标
@@ -24,15 +17,12 @@ $(function() {
         var delay = options.delay || 3000;  // 计时器间隔时间
         var speed = options.speed || 1000;  // 图片速度
         var timer;  // 计时器
+        var slideType = options.slideType || 'silde';
 
         container.css({'width' : totalWidth + 'px'});
 
-
-
-
         /*初始化*/
         var init = function() {
-            var i;
             container.on('mouseover', 'img', function() {
                 stop();
             }).on('mouseout', 'img', function() {
@@ -40,7 +30,6 @@ $(function() {
             });
 
             items.on('mouseover', 'li', function() {
-                // stop();
                 var index = $(this).index();
                 goTo(index);
 
@@ -59,7 +48,15 @@ $(function() {
                 next = (current == num - 1) ? 0 : current + 1;
             }
             // console.log('当前：',current, '下一张：', next);
-            container.animate({left : '-' + next * width + 'px'}, speed);
+            if (slideType == 'fade') {
+                container.children().css({
+                    'position' : 'absolute',
+                    'left' : 0,
+                    'top' : 0
+                }).eq(next).show().siblings().hide();
+            } else {
+                container.animate({left : '-' + next * width + 'px'}, speed);
+            }
             items.find('li').eq(next).addClass('active').siblings().removeClass('active');
             current = next;
         };
@@ -78,7 +75,6 @@ $(function() {
 
         /*开始计时*/
         var play = function(index) {
-            console.log('>>>>>>>>>>>>>>',delay);
             run(index);
             timer = setInterval(run, delay);
         };
@@ -112,6 +108,12 @@ $(function() {
 
     };
 
-    var s = new Slider('.slides', null);
+    var options = {
+        container : '.sliders',
+        delay: 3000,
+        speed: 800,
+        slideType: 'fade',
+    };
+    var s = new Slider('.slides', options);
 
 });
