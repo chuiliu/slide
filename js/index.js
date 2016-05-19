@@ -47,7 +47,6 @@ $(function() {
             } else {
                 next = (current == num - 1) ? 0 : current + 1;
             }
-            // console.log('当前：',current, '下一张：', next);
             if (slideType == 'fade') {
                 container.children().css({
                     'position' : 'absolute',
@@ -103,7 +102,7 @@ $(function() {
         container : '.sliders',
         delay: 3000,
         speed: 800,
-        slideType: 'fade',
+        slideType: 'fade', /*fade或slide*/
     };
     var s = new Slider('.slides', '.items', options);
 
