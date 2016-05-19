@@ -1,16 +1,16 @@
 $(function() {
 
-    var Slider = function(selector, options) {
+    var Slider = function(slideContainer, buttonContainer, options) {
 
-        if (!selector) return;
+        if (!slideContainer || !buttonContainer) return;
 
         var options = options || {};
 
         var current = 0;  // 当前幻灯片下标
         var next = 0;  // 下一幻灯片下标
-        var container = $(selector);  // 幻灯片容器
+        var container = $(slideContainer);  // 幻灯片容器
         var slides = container.children();  // 幻灯片
-        var items = $('.items');  // 按钮容器
+        var items = $(buttonContainer);  // 按钮容器
         var num = slides.length;  // 幻灯片数量
         var width = container.width();  // 幻灯片容器宽度
         var totalWidth = width * num;  // 所有幻灯片总宽度
@@ -105,6 +105,6 @@ $(function() {
         speed: 800,
         slideType: 'fade',
     };
-    var s = new Slider('.slides', options);
+    var s = new Slider('.slides', '.items', options);
 
 });
